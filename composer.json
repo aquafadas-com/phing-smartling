@@ -1,0 +1,43 @@
+{
+  "description": "Phing tasks dedicated to the synchronization of translations with the Smartling service, based on the File API.",
+  "homepage": "https://github.com/cedx/phing-smartling",
+  "name": "cedx/phing-smartling",
+
+  "license": "Apache-2.0",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "type": "library",
+
+  "authors": [{
+    "email": "cedric@belin.io",
+    "name": "Cédric Belin"
+  }],
+  "autoload": {
+    "psr-4": {"phing\\tasks\\": "lib/"}
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "keywords": [
+    "build",
+    "i18n",
+    "phing",
+    "smartling",
+    "task",
+    "translation"
+  ],
+  "require": {
+    "php": ">=7.0.0",
+    "phing/phing": "^2.14.0",
+    "smartling/api-sdk-php": "^1.9.14"
+  },
+  "require-dev": {
+    "codacy/coverage": "^1.0.5",
+    "phpdocumentor/phpdocumentor": "^2.9.0",
+    "phpmd/phpmd": "^2.4.3",
+    "phpunit/phpunit": "^5.4.8"
+  },
+  "support": {
+    "issues": "https://github.com/cedx/phing-smartling/issues"
+  }
+}
