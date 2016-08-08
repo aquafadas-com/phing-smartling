@@ -1,17 +1,17 @@
 # Phing-Smartling
-![Release](http://img.shields.io/npm/v/@aquafadas/phing-smartling.svg) ![License](http://img.shields.io/npm/l/@aquafadas/phing-smartling.svg) ![Downloads](http://img.shields.io/npm/dt/@aquafadas/phing-smartling.svg) ![Dependencies](http://img.shields.io/david/aquafadas-com/phing-smartling.svg) ![Code quality](https://img.shields.io/codacy/grade/a694355860834f91b2072e49b2825106.svg)
+![Release](http://img.shields.io/packagist/v/aquafadas/phing-smartling.svg) ![License](http://img.shields.io/packagist/l/aquafadas/phing-smartling.svg) ![Downloads](http://img.shields.io/packagist/dt/aquafadas/phing-smartling.svg) ![Dependencies](http://img.shields.io/david/aquafadas-com/phing-smartling.svg) ![Code quality](https://img.shields.io/codacy/grade/a694355860834f91b2072e49b2825106.svg)
 
-[Phing.js](http://phingjs.com) tasks dedicated to the synchronization of translations with the [Smartling](https://www.smartling.com) service, based on the [File API](http://docs.smartling.com/pages/API/v1/FileAPI).
+[Phing](https://www.phing.info) tasks dedicated to the synchronization of translations with the [Smartling](https://www.smartling.com) service, based on the [File API](http://docs.smartling.com/pages/API/v1/FileAPI).
 
 ## Getting Started
-If you haven't used [Phing.js](http://phingjs.com) before, be sure to check out the [related documentation](https://github.com/phingjs/phing/blob/master/docs/README.md), as it explains how to create a `phingfile.js` as well as install and use plugins.
+If you haven't used [Phing](https://www.phing.info) before, be sure to check out the [related documentation](https://www.phing.info/docs/guide/stable/), as it explains how to create a `build.xml` as well as install and use plugins.
 Once you're familiar with that process, you may install the provided Phing tasks with this command:
 
 ```shell
-$ npm install --save-dev @aquafadas/phing-smartling
+$ composer require --dev aquafadas/phing-smartling
 ```
 
-Once the build tasks have been installed, they may be enabled inside your `phingfile.js`.
+Once the build tasks have been installed, they may be enabled inside your `build.xml`.
 
 ## Tasks
 
@@ -19,9 +19,9 @@ Once the build tasks have been installed, they may be enabled inside your `phing
 This task takes a pattern as input, indicating the target path of the downloaded files.
 The `${locale}` placeholder will be replaced by the locale of each file.
 
-```javascript
+```xml
 const phing = require('phing');
-const smartling = require('@aquafadas/phing-smartling');
+const smartling = require('aquafadas/phing-smartling');
 
 phing.task('i18n:download', smartling.download('path/to/i18n/${locale}.json', {
   apiKey: 'MyApiKey',  // The Smartling API key.
@@ -36,9 +36,9 @@ The English language will be ignored by this task: this is the default locale us
 #### Upload the message source to the Smartling service
 This task takes a path as input, specifying the message source to be uploaded.
 
-```javascript
+```xml
 const phing = require('phing');
-const smartling = require('@aquafadas/phing-smartling');
+const smartling = require('aquafadas/phing-smartling');
 
 phing.task('i18n:upload', smartling.upload('path/to/i18n/en.json', {
   apiKey: 'MyApiKey', // The Smartling API key.
