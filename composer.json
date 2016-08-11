@@ -1,7 +1,7 @@
 {
-  "description": "Phing tasks dedicated to the synchronization of translations with the Smartling service, based on the File API.",
-  "homepage": "https://github.com/cedx/phing-smartling",
-  "name": "cedx/phing-smartling",
+  "description": "Phing tasks dedicated to the synchronization of translations with the Smartling service, based on the File API v2.",
+  "homepage": "https://github.com/aquafadas-com/phing-smartling",
+  "name": "aquafadas/phing-smartling",
 
   "license": "Apache-2.0",
   "minimum-stability": "dev",
@@ -9,11 +9,11 @@
   "type": "library",
 
   "authors": [{
-    "email": "cedric@belin.io",
-    "name": "Cédric Belin"
+    "email": "opensource@aquafadas.com",
+    "name": "Aquafadas"
   }],
   "autoload": {
-    "psr-4": {"phing\\tasks\\": "lib/"}
+    "psr-4": {"phing\\": "lib/"}
   },
   "config": {
     "optimize-autoloader": true
@@ -38,6 +38,6 @@
     "phpunit/phpunit": "^5.4.8"
   },
   "support": {
-    "issues": "https://github.com/cedx/phing-smartling/issues"
+    "issues": "https://github.com/aquafadas-com/phing-smartling/issues"
   }
 }

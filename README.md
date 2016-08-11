@@ -1,7 +1,7 @@
 # Phing-Smartling
 ![Release](http://img.shields.io/packagist/v/aquafadas/phing-smartling.svg) ![License](http://img.shields.io/packagist/l/aquafadas/phing-smartling.svg) ![Downloads](http://img.shields.io/packagist/dt/aquafadas/phing-smartling.svg) ![Dependencies](http://img.shields.io/david/aquafadas-com/phing-smartling.svg) ![Code quality](https://img.shields.io/codacy/grade/a694355860834f91b2072e49b2825106.svg)
 
-[Phing](https://www.phing.info) tasks dedicated to the synchronization of translations with the [Smartling](https://www.smartling.com) service, based on the [File API](http://docs.smartling.com/pages/API/v1/FileAPI).
+[Phing](https://www.phing.info) tasks dedicated to the synchronization of translations with the [Smartling](https://www.smartling.com) service, based on the [File API v2](http://docs.smartling.com/pages/API/v2).
 
 ## Getting Started
 If you haven't used [Phing](https://www.phing.info) before, be sure to check out the [related documentation](https://www.phing.info/docs/guide/stable/), as it explains how to create a `build.xml` as well as install and use plugins.

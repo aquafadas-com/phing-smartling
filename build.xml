@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<project default="dist" name="yii2-free-mobile">
-  <property name="version" value="0.5.2"/>
+<project default="dist" name="phing-smartling">
+  <property name="version" value="0.1.0"/>
 
   <target name="clean" description="Deletes all generated files and reset any saved state.">
     <delete>
@@ -18,7 +18,7 @@
   <target name="dist" depends="clean" description="Creates a distribution file for this program.">
     <zip destfile="var/${phing.project.name}-${version}.zip">
       <fileset dir="." includes="*.json,*.md,*.txt"/>
-      <fileset dir="." includes="lib/**/*.php"/>
+      <fileset dir="." includes="lib/*.php"/>
     </zip>
   </target>
 
