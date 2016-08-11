@@ -60,7 +60,7 @@ class SmartlingDownloadTask extends SmartlingFileTask {
    */
   public function init() {
     parent::init();
-    if(!RetrievalType::isDefined($this->getRetrievalType()) throw new \BuildException('Invalid retrieval type.');
+    if(!RetrievalType::isDefined($this->getRetrievalType())) throw new \BuildException('Invalid retrieval type.');
   }
 
   /**
@@ -70,7 +70,7 @@ class SmartlingDownloadTask extends SmartlingFileTask {
     $api = $this->createFileApi();
 
     $params = new DownloadFileParameters();
-    $params->setRetrievalType('TODO retrieval type');
+    $params->setRetrievalType($this->getRetrievalType());
 
     $result = $api->downloadFile($this->getFileUri(), 'TODO: locale', $params);
   }

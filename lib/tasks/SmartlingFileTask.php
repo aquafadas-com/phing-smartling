@@ -47,7 +47,7 @@ abstract class SmartlingFileTask extends \Task {
    * Creates a File API provider.
    * @return FileApi The newly created instance.
    */
-  private function createFileApi() {
+  protected function createFileApi() {
     return FileApi::create($this->createAuthProvider(), $this->getProjectId());
   }
 }

@@ -77,7 +77,7 @@ trait API {
    * Checks that the instance properties are properly initialized.
    * @return bool Whether the requirements are met.
    */
-  private function checkRequirements() {
+  protected function checkRequirements() {
     if(!mb_strlen($this->getAccessToken())) return false;
     if(!mb_strlen($this->getProjectId())) return false;
     if(!mb_strlen($this->getUserId())) return false;
@@ -88,7 +88,7 @@ trait API {
    * Creates an authentication provider.
    * @return AuthTokenProvider The newly created instance.
    */
-  private function createAuthProvider() {
+  protected function createAuthProvider() {
     return AuthTokenProvider::create($this->getUserId(), $this->getAccessToken());
   }
 }
