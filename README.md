@@ -4,8 +4,8 @@
 [Phing](https://www.phing.info) tasks dedicated to the synchronization of translations with the [Smartling](https://www.smartling.com) service, based on the [File API v2](http://docs.smartling.com/pages/API/v2).
 
 ## Getting Started
-If you haven't used [Phing](https://www.phing.info) before, be sure to check out the [related documentation](https://www.phing.info/docs/guide/stable/), as it explains how to create a `build.xml` as well as install and use plugins.
-Once you're familiar with that process, you may install the provided Phing tasks with this command:
+If you haven't used [Phing](https://www.phing.info) before, be sure to check out the [related documentation](https://www.phing.info/docs/guide/stable/), as it explains how to create a `build.xml` as well as install and use tasks.
+Once you're familiar with that process, you may install the provided Phing classes with this command:
 
 ```shell
 $ composer require --dev aquafadas/phing-smartling
