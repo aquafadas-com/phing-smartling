@@ -12,7 +12,7 @@ trait Enum {
   /**
    * Private constructor: prohibit the class instantiation.
    */
-  private function __construct() {}
+  final private function __construct() {}
 
   /**
    * Returns an indication whether a constant with a specified value exists in this enumeration.
@@ -20,7 +20,7 @@ trait Enum {
    * @return bool `true` if a constant in this enumeration has the specified value, otherwise `false`.
    */
   public static function isDefined($value): bool {
-    return in_array($value, static::getValues());
+    return in_array($value, static::getValues(), true);
   }
 
   /**
@@ -39,7 +39,7 @@ trait Enum {
    * @return string A string containing the name of the enumerated constant that has the specified value, or an empty string if no such constant is found.
    */
   public static function getName($value): string {
-    $index = array_search($value, static::getValues());
+    $index = array_search($value, static::getValues(), true);
     return is_int($index) ? static::getNames()[$index] : '';
   }
 
