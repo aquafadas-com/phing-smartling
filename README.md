@@ -17,13 +17,13 @@ Once the build tasks have been installed, they may be enabled inside your `build
 
 #### Download the message translations from the Smartling service
 This task takes a pattern as input, indicating the target path of the downloaded files.
-The `${locale}` placeholder will be replaced by the locale of each file.
+The `{{locale}}` placeholder will be replaced by the locale of each file.
 
 ```xml
 const phing = require('phing');
 const smartling = require('aquafadas/phing-smartling');
 
-phing.task('i18n:download', smartling.download('path/to/i18n/${locale}.json', {
+phing.task('i18n:download', smartling.download('path/to/i18n/{{locale}}.json', {
   apiKey: 'MyApiKey',  // The Smartling API key.
   fileUri: '/Phing-Smartling/messages.json', // The file URL.
   locales: ['es', 'fr', 'ja', 'zh'], // The locales to be downloaded.
@@ -52,6 +52,6 @@ The provided file must be in American English (e.g. the `en-US` locale), as sugg
 
 ## See Also
 - [Code Quality](https://www.codacy.com/app/aquafadas/phing-smartling)
-
+- TODO: continuous integration https://travis-ci.org/aquafadas-com/phing-smartling
 ## License
 [Phing-Smartling](https://github.com/aquafadas-com/phing-smartling) is distributed under the Apache License, version 2.0.

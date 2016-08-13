@@ -3,7 +3,9 @@
  * Implementation of the `phing\smartling\API` trait.
  */
 namespace phing\smartling;
+
 use Smartling\AuthApi\AuthTokenProvider;
+use Smartling\File\FileApi;
 
 /**
  * Provides common properties and methods for the [Phing](https://www.phing.info) tasks related to the [Smartling](https://www.smartling.com) service.
@@ -74,21 +76,18 @@ trait API {
   }
 
   /**
-   * Checks that the instance properties are properly initialized.
-   * @return bool Whether the requirements are met.
-   */
-  protected function checkRequirements(): bool {
-    if(!mb_strlen($this->getAccessToken())) return false;
-    if(!mb_strlen($this->getProjectId())) return false;
-    if(!mb_strlen($this->getUserId())) return false;
-    return true;
-  }
-
-  /**
    * Creates an authentication provider.
    * @return AuthTokenProvider The newly created instance.
    */
   protected function createAuthProvider(): AuthTokenProvider {
     return AuthTokenProvider::create($this->getUserId(), $this->getAccessToken());
+  }
+
+  /**
+   * Creates a File API provider.
+   * @return FileApi The newly created instance.
+   */
+  protected function createFileApi(): FileApi {
+    return FileApi::create($this->createAuthProvider(), $this->getProjectId());
   }
 }

@@ -13,7 +13,7 @@
     "name": "Aquafadas"
   }],
   "autoload": {
-    "psr-4": {"phing\\": "lib/"}
+    "psr-4": {"phing\\smartling\\": "lib/"}
   },
   "config": {
     "optimize-autoloader": true
