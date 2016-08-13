@@ -13,23 +13,23 @@ trait API {
   /**
    * @var string The token to authenticate all API requests.
    */
-  private $accessToken;
+  private $accessToken = '';
 
   /**
    * @var string The project identifier.
    */
-  private $projectId;
+  private $projectId = '';
 
   /**
    * @var string The user identifier.
    */
-  private $userId;
+  private $userId = '';
 
   /**
    * Gets the Smartling access token.
    * @return string The current Smartling access token.
    */
-  public function getAccessToken() {
+  public function getAccessToken(): string {
     return $this->accessToken;
   }
 
@@ -37,7 +37,7 @@ trait API {
    * Gets the project identifier.
    * @return string $value The current project identifier.
    */
-  public function getProjectId() {
+  public function getProjectId(): string {
     return $this->projectId;
   }
 
@@ -45,7 +45,7 @@ trait API {
    * Gets the user identifier.
    * @return string The current user identifier.
    */
-  public function getUserId() {
+  public function getUserId(): string {
     return $this->userId;
   }
 
@@ -53,7 +53,7 @@ trait API {
    * Sets the Smartling access token.
    * @param string $value The new Smartling access token.
    */
-  public function setAccessToken($value) {
+  public function setAccessToken(string $value) {
     $this->accessToken = $value;
   }
 
@@ -61,7 +61,7 @@ trait API {
    * Sets the project identifier.
    * @param string $value The new project identifier.
    */
-  public function setProjectId($value) {
+  public function setProjectId(string $value) {
     $this->projectId = $value;
   }
 
@@ -69,7 +69,7 @@ trait API {
    * Sets the user identifier.
    * @param string $value The new user identifier.
    */
-  public function setUserId($value) {
+  public function setUserId(string $value) {
     $this->userId = $value;
   }
 
@@ -77,7 +77,7 @@ trait API {
    * Checks that the instance properties are properly initialized.
    * @return bool Whether the requirements are met.
    */
-  protected function checkRequirements() {
+  protected function checkRequirements(): bool {
     if(!mb_strlen($this->getAccessToken())) return false;
     if(!mb_strlen($this->getProjectId())) return false;
     if(!mb_strlen($this->getUserId())) return false;
@@ -88,7 +88,7 @@ trait API {
    * Creates an authentication provider.
    * @return AuthTokenProvider The newly created instance.
    */
-  protected function createAuthProvider() {
+  protected function createAuthProvider(): AuthTokenProvider {
     return AuthTokenProvider::create($this->getUserId(), $this->getAccessToken());
   }
 }

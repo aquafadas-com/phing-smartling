@@ -21,11 +21,6 @@ final class FileType {
   const CSV = 'csv';
 
   /**
-   * @var string The file is a custom XML resource.
-   */
-  const CUSTOM_XML = 'xml';
-
-  /**
    * @var string The file is a Gettext PO/POT resource.
    */
   const GETTEXT = 'gettext';
@@ -89,6 +84,11 @@ final class FileType {
    * @var string The file is a XLIFF resource.
    */
   const XLIFF = 'xliff';
+
+  /**
+   * @var string The file is a custom XML resource.
+   */
+  const XML = 'xml';
 
   /**
    * @var string The file is a YAML resource.

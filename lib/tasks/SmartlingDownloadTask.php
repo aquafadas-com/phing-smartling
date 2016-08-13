@@ -3,8 +3,6 @@
  * Implementation of the `phing\tasks\SmartlingDownloadTask` class.
  */
 namespace phing\tasks;
-
-use phing\smartling\API;
 use phing\smartling\RetrievalType;
 
 /**
@@ -13,7 +11,7 @@ use phing\smartling\RetrievalType;
 class SmartlingDownloadTask extends SmartlingFileTask {
 
   /**
-   * @var bool Value indicating whether to return the original string or an empty string where no translation is available.
+   * @var bool Value indicating whether to return the original string or an empty string when no translation is available.
    */
   private $includeOriginalStrings = true;
 
@@ -23,10 +21,10 @@ class SmartlingDownloadTask extends SmartlingFileTask {
   private $retrievalType = RetrievalType::PUBLISHED;
 
   /**
-   * Gets the file URL.
-   * @return string The current file URL.
+   * Gets a value indicating whether to return the original string or an empty string when no translation is available.
+   * @return bool `true` to return the original string when no translation is available, otherwise `false`.
    */
-  public function getFileUri() {
+  public function getIncludeOriginalStrings(): bool {
     return $this->includeOriginalStrings;
   }
 
@@ -34,24 +32,8 @@ class SmartlingDownloadTask extends SmartlingFileTask {
    * Gets the desired format for the download.
    * @return string The current desired format for the download.
    */
-  public function getRetrievalType() {
+  public function getRetrievalType(): string {
     return $this->retrievalType;
-  }
-
-  /**
-   * Sets the file URL.
-   * @param string $value The new file URL.
-   */
-  public function setFileUri($value) {
-    $this->includeOriginalStrings = $value;
-  }
-
-  /**
-   * Sets the desired format for the download.
-   * @param string $value The new desired format for the download.
-   */
-  public function setRetrievalType($value) {
-    $this->retrievalType = $value;
   }
 
   /**
@@ -69,9 +51,25 @@ class SmartlingDownloadTask extends SmartlingFileTask {
   public function main() {
     $api = $this->createFileApi();
 
-    $params = new DownloadFileParameters();
+    $params = new \DownloadFileParameters();
     $params->setRetrievalType($this->getRetrievalType());
 
     $result = $api->downloadFile($this->getFileUri(), 'TODO: locale', $params);
+  }
+
+  /**
+   * Sets a value indicating whether to return the original string or an empty string when no translation is available.
+   * @param bool $value `true` to return the original string when no translation is available, otherwise `false`.
+   */
+  public function setIncludeOriginalStrings(bool $value) {
+    $this->includeOriginalStrings = $value;
+  }
+
+  /**
+   * Sets the desired format for the download.
+   * @param string $value The new desired format for the download.
+   */
+  public function setRetrievalType(string $value) {
+    $this->retrievalType = $value;
   }
 }

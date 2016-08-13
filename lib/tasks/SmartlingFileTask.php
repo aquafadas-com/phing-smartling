@@ -16,22 +16,14 @@ abstract class SmartlingFileTask extends \Task {
   /**
    * @var string The file URL.
    */
-  private $fileUri;
+  private $fileUri = '';
 
   /**
    * Gets the file URL.
    * @return string The current file URL.
    */
-  public function getFileUri() {
+  public function getFileUri(): string {
     return $this->fileUri;
-  }
-
-  /**
-   * Sets the file URL.
-   * @param string $value The new file URL.
-   */
-  public function setFileUri($value) {
-    $this->fileUri = $value;
   }
 
   /**
@@ -44,10 +36,18 @@ abstract class SmartlingFileTask extends \Task {
   }
 
   /**
+   * Sets the file URL.
+   * @param string $value The new file URL.
+   */
+  public function setFileUri(string $value) {
+    $this->fileUri = $value;
+  }
+
+  /**
    * Creates a File API provider.
    * @return FileApi The newly created instance.
    */
-  protected function createFileApi() {
+  protected function createFileApi(): FileApi {
     return FileApi::create($this->createAuthProvider(), $this->getProjectId());
   }
 }
