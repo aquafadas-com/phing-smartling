@@ -65,12 +65,7 @@ class EnumTest extends \PHPUnit_Framework_TestCase {
    * Tests the `getConstants` method.
    */
   public function testGetConstants() {
-    $this->assertEquals(SampleEnum::getConstants(), [
-      'ZERO' => false,
-      'ONE' => 1,
-      'TWO' => 'two',
-      'THREE' => 3.0
-    ]);
+    $this->assertEquals(['ZERO' => false, 'ONE' => 1, 'TWO' => 'two', 'THREE' => 3.0], SampleEnum::getConstants());
   }
 
   /**
@@ -92,23 +87,13 @@ class EnumTest extends \PHPUnit_Framework_TestCase {
    * Tests the `getNames` method.
    */
   public function testGetNames() {
-    $this->assertEquals(SampleEnum::getNames(), [
-      'ZERO',
-      'ONE',
-      'TWO',
-      'THREE'
-    ]);
+    $this->assertEquals(['ZERO', 'ONE', 'TWO', 'THREE'], SampleEnum::getNames());
   }
 
   /**
    * Tests the `getValues` method.
    */
   public function testGetValues() {
-    $this->assertEquals(SampleEnum::getValues(), [
-      false,
-      1,
-      'two',
-      3.0
-    ]);
+    $this->assertEquals([false, 1, 'two', 3.0], SampleEnum::getValues());
   }
 }

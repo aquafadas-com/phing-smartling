@@ -3,7 +3,7 @@
  * Implementation of the `phing\smartling\tasks\FileTask` class.
  */
 namespace phing\smartling\tasks;
-use phing\smartling\API;
+use phing\smartling\{API, FileType};
 
 /**
  * Provides the base implementation for file-based tasks.
@@ -41,5 +41,44 @@ abstract class FileTask extends \Task {
    */
   public function setFileUri(string $value) {
     $this->fileUri = $value;
+  }
+
+  /**
+   * Returns the file type corresponding to the specified file URI.
+   * @param string $fileUri The file URI.
+   * @return string The file type corresponding to the specified file URI, or an empty string if the type is unknown.
+   */
+  protected static function getFileTypeFromUri(string $fileUri): string {
+    $extension = mb_strtolower(pathinfo($fileUri, PATHINFO_EXTENSION));
+    if(!mb_strlen($extension)) return '';
+
+    switch($extension) {
+      case FileType::CSV:
+      case FileType::HTML:
+      case FileType::INDESIGN:
+      case FileType::JSON:
+      case FileType::OPEN_XML:
+      case FileType::RESX;
+      case FileType::YAML:
+        return $extension;
+
+      case 'properties':
+        return FileType::JAVA_PROPERTIES;
+
+      case 'ts':
+        return FileType::QT_LINGUIST;
+
+      case 'txt':
+        return FileType::PLAIN_TEXT;
+
+      case 'xlf':
+        return FileType::XLIFF;
+
+      case 'yml';
+        return FileType::YAML;
+
+      default:
+        return '';
+    }
   }
 }
