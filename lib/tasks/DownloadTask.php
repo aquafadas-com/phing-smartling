@@ -4,6 +4,7 @@
  */
 namespace phing\smartling\tasks;
 
+use phing\smartling\Locale;
 use Smartling\Exceptions\SmartlingApiException;
 use Smartling\File\Params\DownloadFileParameters;
 
@@ -90,7 +91,7 @@ class DownloadTask extends FileTask {
     try {
       foreach($this->getLocales() as $locale) {
         $path = str_replace('{{locale}}', $locale, $target);
-        if(!@file_put_contents($path, $api->downloadFile($fileUri, $locale, $this->params)))
+        if(!@file_put_contents($path, $api->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
           throw new \BuildException("Unable to save the downloaded file: $path");
       }
     }
