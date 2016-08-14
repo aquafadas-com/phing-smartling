@@ -52,6 +52,7 @@ The provided file must be in American English (e.g. the `en-US` locale), as sugg
 
 ## See Also
 - [Code Quality](https://www.codacy.com/app/aquafadas/phing-smartling)
-- TODO: continuous integration https://travis-ci.org/aquafadas-com/phing-smartling
+- [Continuous Integration](https://travis-ci.org/aquafadas-com/phing-smartling)
+
 ## License
 [Phing-Smartling](https://github.com/aquafadas-com/phing-smartling) is distributed under the Apache License, version 2.0.

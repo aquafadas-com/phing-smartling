@@ -26,13 +26,21 @@ class DownloadTask extends FileTask {
   /**
    * @var string The pattern indicating the target path of the downloaded files.
    */
-  private $pattern = '';
+  private $filePattern = '';
 
   /**
    * Initializes a new instance of the class.
    */
   public function __construct() {
     $this->params = new DownloadFileParameters();
+  }
+
+  /**
+   * Gets the pattern indicating the target path of the downloaded files.
+   * @return string The target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
+   */
+  public function getFilePattern(): string {
+    return $this->filePattern;
   }
 
   /**
@@ -49,14 +57,6 @@ class DownloadTask extends FileTask {
    */
   public function getLocales(): array {
     return $this->locales;
-  }
-
-  /**
-   * Gets the pattern indicating the target path of the downloaded files.
-   * @return string The target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
-   */
-  public function getPattern(): string {
-    return $this->pattern;
   }
 
   /**
@@ -84,11 +84,11 @@ class DownloadTask extends FileTask {
   public function main() {
     $fileApi = $this->createFileApi();
     $fileUri = $this->getFileUri();
-    $pattern = $this->getPattern();
+    $filePattern = $this->getFilePattern();
 
     try {
       foreach($this->getLocales() as $locale) {
-        $path = str_replace('{{locale}}', $locale, $pattern);
+        $path = str_replace('{{locale}}', $locale, $filePattern);
         if(!@file_put_contents($path, $fileApi->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
           throw new \BuildException("Unable to save the downloaded file: $path");
       }
@@ -97,6 +97,14 @@ class DownloadTask extends FileTask {
     catch(SmartlingApiException $e) {
       throw new \BuildException($e);
     }
+  }
+
+  /**
+   * Sets the pattern indicating the target path of the downloaded files.
+   * @param string $value The new target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
+   */
+  public function setFilePattern(string $value) {
+    $this->filePattern = $value;
   }
 
   /**
@@ -113,14 +121,6 @@ class DownloadTask extends FileTask {
    */
   public function setLocales(array $value) {
     $this->locales = $value;
-  }
-
-  /**
-   * Sets the pattern indicating the target path of the downloaded files.
-   * @param string $value The new target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
-   */
-  public function setPattern(string $value) {
-    $this->pattern = $value;
   }
 
   /**

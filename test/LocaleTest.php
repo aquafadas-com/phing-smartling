@@ -33,10 +33,10 @@ class LocaleTest extends \PHPUnit_Framework_TestCase {
   public function testGetSpecificLocale() {
     $this->assertEquals('fooBar', Locale::getSpecificLocale('fooBar'));
 
-    $this->assertEquals('en-US', Locale::getSpecificLocale('en'));
-    $this->assertEquals('en-US', Locale::getSpecificLocale('en-US'));
+    $this->assertEquals('en-GB', Locale::getSpecificLocale('en-GB'));
+    $this->assertEquals('fr-BE', Locale::getSpecificLocale('fr-BE'));
 
+    $this->assertEquals('en-US', Locale::getSpecificLocale('en'));
     $this->assertEquals('fr-FR', Locale::getSpecificLocale('fr'));
-    $this->assertEquals('fr-FR', Locale::getSpecificLocale('fr-FR'));
   }
 }
