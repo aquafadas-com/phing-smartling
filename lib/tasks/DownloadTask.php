@@ -4,7 +4,7 @@
  */
 namespace phing\smartling\tasks;
 
-use phing\smartling\Locale;
+use phing\smartling\{Locale, RetrievalType};
 use Smartling\Exceptions\SmartlingApiException;
 use Smartling\File\Params\DownloadFileParameters;
 
@@ -26,23 +26,21 @@ class DownloadTask extends FileTask {
   /**
    * @var string The pattern indicating the target path of the downloaded files.
    */
-  private $target;
+  private $pattern = '';
 
   /**
    * Initializes a new instance of the class.
    */
   public function __construct() {
     $this->params = new DownloadFileParameters();
-    $this->setIncludeOriginalStrings(true);
-    $this->setRetrievalType(DownloadFileParameters::RETRIEVAL_TYPE_PUBLISHED);
   }
 
   /**
    * Gets a value indicating whether to return the original string or an empty string when no translation is available.
-   * @return bool `true` to return the original string when no translation is available, otherwise `false`. Defaults to `true`.
+   * @return bool `true` to return the original string when no translation is available, otherwise `false`. Defaults to `false`.
    */
   public function getIncludeOriginalStrings(): bool {
-    return $this->params->exportToArray()['includeOriginalStrings'];
+    return $this->params->exportToArray()['includeOriginalStrings'] ?? false;
   }
 
   /**
@@ -54,19 +52,19 @@ class DownloadTask extends FileTask {
   }
 
   /**
+   * Gets the pattern indicating the target path of the downloaded files.
+   * @return string The target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
+   */
+  public function getPattern(): string {
+    return $this->pattern;
+  }
+
+  /**
    * Gets the desired format for the download.
    * @return string The current desired format for the download. Defaults to `"published"`.
    */
   public function getRetrievalType(): string {
-    return $this->params->exportToArray()['retrievalType'];
-  }
-
-  /**
-   * Gets the pattern indicating the target path of the downloaded files.
-   * @return string The target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
-   */
-  public function getTarget(): string {
-    return $this->target;
+    return $this->params->exportToArray()['retrievalType'] ?? RetrievalType::PUBLISHED;
   }
 
   /**
@@ -84,14 +82,14 @@ class DownloadTask extends FileTask {
    * @throws \BuildException An error occurred during the processing.
    */
   public function main() {
-    $api = $this->createFileApi();
+    $fileApi = $this->createFileApi();
     $fileUri = $this->getFileUri();
-    $target = $this->getTarget();
+    $pattern = $this->getPattern();
 
     try {
       foreach($this->getLocales() as $locale) {
-        $path = str_replace('{{locale}}', $locale, $target);
-        if(!@file_put_contents($path, $api->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
+        $path = str_replace('{{locale}}', $locale, $pattern);
+        if(!@file_put_contents($path, $fileApi->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
           throw new \BuildException("Unable to save the downloaded file: $path");
       }
     }
@@ -118,6 +116,14 @@ class DownloadTask extends FileTask {
   }
 
   /**
+   * Sets the pattern indicating the target path of the downloaded files.
+   * @param string $value The new target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
+   */
+  public function setPattern(string $value) {
+    $this->pattern = $value;
+  }
+
+  /**
    * Sets the desired format for the download.
    * @param string $value The new desired format for the download.
    * @throws \BuildException The specified value is invalid.
@@ -125,13 +131,5 @@ class DownloadTask extends FileTask {
   public function setRetrievalType(string $value) {
     try { $this->params->setRetrievalType($value); }
     catch(SmartlingApiException $e) { throw new \BuildException($e); }
-  }
-
-  /**
-   * Sets the pattern indicating the target path of the downloaded files.
-   * @param string $value The new target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
-   */
-  public function setTarget(string $value) {
-    $this->target = $value;
   }
 }
