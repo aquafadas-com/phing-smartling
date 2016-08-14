@@ -36,7 +36,9 @@ class FileTaskTest extends \PHPUnit_Framework_TestCase {
    * Tests the `getFileTypeFromUri` method.
    */
   public function testGetFileTypeFromUri() {
+    $this->assertEquals('', SampleFileTask::getFileTypeFromUri('/fooBar'));
     $this->assertEquals('', SampleFileTask::getFileTypeFromUri('/foo.bar'));
+
     $this->assertEquals(FileType::CSV, SampleFileTask::getFileTypeFromUri('/messages.csv'));
     $this->assertEquals(FileType::JSON, SampleFileTask::getFileTypeFromUri('/project/messages.json'));
     $this->assertEquals(FileType::JAVA_PROPERTIES, SampleFileTask::getFileTypeFromUri('messages.properties'));

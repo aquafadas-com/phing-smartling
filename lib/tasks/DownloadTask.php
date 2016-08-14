@@ -14,6 +14,11 @@ use Smartling\File\Params\DownloadFileParameters;
 class DownloadTask extends FileTask {
 
   /**
+   * @var string The pattern indicating the target path of the downloaded files.
+   */
+  private $filePattern = '';
+
+  /**
    * @var array The locales to be downloaded.
    */
   private $locales = [];
@@ -22,11 +27,6 @@ class DownloadTask extends FileTask {
    * @var DownloadFileParameters The download parameters.
    */
   private $params;
-
-  /**
-   * @var string The pattern indicating the target path of the downloaded files.
-   */
-  private $filePattern = '';
 
   /**
    * Initializes a new instance of the class.
@@ -73,8 +73,8 @@ class DownloadTask extends FileTask {
    */
   public function init() {
     parent::init();
+    if(!mb_strlen($this->getFilePattern())) throw new \BuildException('You must provide the target path of the downloaded files.');
     if(!count($this->getLocales())) throw new \BuildException('You must provide at least one locale to download.');
-    if(!mb_strlen($this->getTarget())) throw new \BuildException('You must provide the target path of the downloaded files.');
   }
 
   /**
@@ -83,8 +83,8 @@ class DownloadTask extends FileTask {
    */
   public function main() {
     $fileApi = $this->createFileApi();
-    $fileUri = $this->getFileUri();
     $filePattern = $this->getFilePattern();
+    $fileUri = $this->getFileUri();
 
     try {
       foreach($this->getLocales() as $locale) {

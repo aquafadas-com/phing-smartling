@@ -58,7 +58,7 @@ abstract class FileTask extends \Task {
       case FileType::INDESIGN:
       case FileType::JSON:
       case FileType::OPEN_XML:
-      case FileType::RESX;
+      case FileType::RESX:
       case FileType::YAML:
         return $extension;
 
@@ -74,7 +74,7 @@ abstract class FileTask extends \Task {
       case 'xlf':
         return FileType::XLIFF;
 
-      case 'yml';
+      case 'yml':
         return FileType::YAML;
 
       default:

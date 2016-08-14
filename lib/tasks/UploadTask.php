@@ -14,7 +14,7 @@ use Smartling\File\Params\UploadFileParameters;
 class UploadTask extends FileTask {
 
   /**
-   * @var string The path to the message source.
+   * @var \PhingFile The path to the message source.
    */
   private $file;
 
@@ -53,7 +53,7 @@ class UploadTask extends FileTask {
 
   /**
    * Gets a value that uniquely identifies the file.
-   * @return string The current file type. Defaults to `"json"`.
+   * @return string The current file type.
    */
   public function getFileType(): string {
     return $this->fileType;
@@ -68,7 +68,9 @@ class UploadTask extends FileTask {
 
     $fileType = $this->getFileType();
     if(mb_strlen($fileType) && !FileType::isDefined($fileType)) throw new \BuildException('File type not supported.');
-    if(!is_file($this->getFile())) throw new \BuildException('Unable to find the message source.');
+
+    $file = $this->getFile();
+    if(!$file || !is_file($file->getAbsolutePath())) throw new \BuildException('Unable to find the message source.');
   }
 
   /**

@@ -1,5 +1,5 @@
 # Phing-Smartling
-![Release](http://img.shields.io/packagist/v/aquafadas/phing-smartling.svg) ![License](http://img.shields.io/packagist/l/aquafadas/phing-smartling.svg) ![Downloads](http://img.shields.io/packagist/dt/aquafadas/phing-smartling.svg) ![Dependencies](http://img.shields.io/david/aquafadas-com/phing-smartling.svg) ![Code quality](https://img.shields.io/codacy/grade/a694355860834f91b2072e49b2825106.svg)
+![Release](https://img.shields.io/packagist/v/aquafadas/phing-smartling.svg) ![License](https://img.shields.io/packagist/l/aquafadas/phing-smartling.svg) ![Downloads](https://img.shields.io/packagist/dt/aquafadas/phing-smartling.svg) ![Code quality](https://img.shields.io/codacy/grade/ef57f4e6c9b7483ab9f38673ca503703.svg) ![Build](https://img.shields.io/travis/aquafadas-com/phing-smartling.svg)
 
 [Phing](https://www.phing.info) tasks dedicated to the synchronization of translations with the [Smartling](https://www.smartling.com) service, based on the [File API v2](http://docs.smartling.com/pages/API/v2).
 
