@@ -14,6 +14,11 @@ use Smartling\File\Params\UploadFileParameters;
 class UploadTask extends FileTask {
 
   /**
+   * @var string The path to the message source.
+   */
+  private $file;
+
+  /**
    * @var string The file type.
    */
   private $fileType = '';
@@ -24,16 +29,10 @@ class UploadTask extends FileTask {
   private $params;
 
   /**
-   * @var string The path to the message source.
-   */
-  private $source;
-
-  /**
    * Initializes a new instance of the class.
    */
   public function __construct() {
     $this->params = new UploadFileParameters();
-    $this->setAuthorize(false);
   }
 
   /**
@@ -41,7 +40,15 @@ class UploadTask extends FileTask {
    * @return bool `true` to return the original string when no translation is available, otherwise `false`. Defaults to `false`.
    */
   public function getAuthorize(): bool {
-    return $this->params->exportToArray()['authorize'];
+    return $this->params->exportToArray()['authorize'] ?? false;
+  }
+
+  /**
+   * Gets the path to the message source.
+   * @return \PhingFile The path to the message source.
+   */
+  public function getFile(): \PhingFile {
+    return $this->file;
   }
 
   /**
@@ -53,32 +60,29 @@ class UploadTask extends FileTask {
   }
 
   /**
-   * Gets the path to the message source.
-   * @return string The path to the message source.
-   */
-  public function getSource(): string {
-    return $this->source;
-  }
-
-  /**
    * Initializes the instance.
    * @throws \BuildException The requirements are not met.
    */
   public function init() {
     parent::init();
-    if(!FileType::isDefined($this->getFileType())) throw new \BuildException('File type not supported.');
-    if(!is_file($this->getSource())) throw new \BuildException('Unable to find the message source.');
+
+    $fileType = $this->getFileType();
+    if(mb_strlen($fileType) && !FileType::isDefined($fileType)) throw new \BuildException('File type not supported.');
+    if(!is_file($this->getFile())) throw new \BuildException('Unable to find the message source.');
   }
 
   /**
    * The task entry point.
    */
   public function main() {
+    $fileType = $this->getFileType();
+    $fileUri = $this->getFileUri();
+
     try {
       $this->createFileApi()->uploadFile(
-        $this->getSource(),
-        $this->getFileUri(),
-        $this->getFileType(),
+        $this->getFile()->getAbsolutePath(),
+        $fileUri,
+        mb_strlen($fileType) ? $fileType : static::getFileTypeFromUri($fileUri),
         $this->params
       );
     }
@@ -97,18 +101,18 @@ class UploadTask extends FileTask {
   }
 
   /**
+   * Sets the path to the message source.
+   * @param \PhingFile $value The new path of the message source.
+   */
+  public function setFile(\PhingFile $value) {
+    $this->file = $value;
+  }
+
+  /**
    * Sets a value that uniquely identifies the file.
    * @param string $value The new file type.
    */
   public function setFileType(string $value) {
     $this->fileType = $value;
-  }
-
-  /**
-   * Sets the path to the message source.
-   * @param string $value The new path of the message source.
-   */
-  public function setSource(string $value) {
-    $this->source = $value;
   }
 }
