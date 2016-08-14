@@ -1,8 +1,8 @@
 <?php
 /**
- * Implementation of the `phing\test\smartling\EnumTest` class.
+ * Implementation of the `phing\smartling\test\EnumTest` class.
  */
-namespace phing\test\smartling;
+namespace phing\smartling\test;
 use phing\smartling\Enum;
 
 /**

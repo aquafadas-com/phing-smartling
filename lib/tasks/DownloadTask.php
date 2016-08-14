@@ -54,7 +54,7 @@ class DownloadTask extends FileTask {
 
   /**
    * Gets the desired format for the download.
-   * @return string The current desired format for the download.
+   * @return string The current desired format for the download. Defaults to `"published"`.
    */
   public function getRetrievalType(): string {
     return $this->params->exportToArray()['retrievalType'];
@@ -62,7 +62,7 @@ class DownloadTask extends FileTask {
 
   /**
    * Gets the pattern indicating the target path of the downloaded files.
-   * @return string The target path of the downloaded files (e.g. `path/to/i18n/{{locale}}.json`).
+   * @return string The target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
    */
   public function getTarget(): string {
     return $this->target;
@@ -128,7 +128,7 @@ class DownloadTask extends FileTask {
 
   /**
    * Sets the pattern indicating the target path of the downloaded files.
-   * @param string $value The new target path of the downloaded files (e.g. `path/to/i18n/{{locale}}.json`).
+   * @param string $value The new target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
    */
   public function setTarget(string $value) {
     $this->target = $value;

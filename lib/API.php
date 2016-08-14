@@ -13,11 +13,6 @@ use Smartling\File\FileApi;
 trait API {
 
   /**
-   * @var string The token to authenticate all API requests.
-   */
-  private $accessToken = '';
-
-  /**
    * @var string The project identifier.
    */
   private $projectId = '';
@@ -28,12 +23,9 @@ trait API {
   private $userId = '';
 
   /**
-   * Gets the Smartling access token.
-   * @return string The current Smartling access token.
+   * @var string The user secret.
    */
-  public function getAccessToken(): string {
-    return $this->accessToken;
-  }
+  private $userSecret = '';
 
   /**
    * Gets the project identifier.
@@ -52,11 +44,11 @@ trait API {
   }
 
   /**
-   * Sets the Smartling access token.
-   * @param string $value The new Smartling access token.
+   * Gets the user secret.
+   * @return string The current user secret.
    */
-  public function setAccessToken(string $value) {
-    $this->accessToken = $value;
+  public function getUserSecret(): string {
+    return $this->userSecret;
   }
 
   /**
@@ -76,11 +68,19 @@ trait API {
   }
 
   /**
-   * Creates an authentication provider.
+   * Sets the user secret.
+   * @param string $value The new user secret.
+   */
+  public function setUserSecret(string $value) {
+    $this->userSecret = $value;
+  }
+
+  /**
+   * Creates an authentication token provider.
    * @return AuthTokenProvider The newly created instance.
    */
-  protected function createAuthProvider(): AuthTokenProvider {
-    return AuthTokenProvider::create($this->getUserId(), $this->getAccessToken());
+  protected function createAuthTokenProvider(): AuthTokenProvider {
+    return AuthTokenProvider::create($this->getUserId(), $this->getUserSecret());
   }
 
   /**
@@ -88,6 +88,6 @@ trait API {
    * @return FileApi The newly created instance.
    */
   protected function createFileApi(): FileApi {
-    return FileApi::create($this->createAuthProvider(), $this->getProjectId());
+    return FileApi::create($this->createAuthTokenProvider(), $this->getProjectId());
   }
 }

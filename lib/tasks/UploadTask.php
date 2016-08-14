@@ -19,7 +19,7 @@ class UploadTask extends FileTask {
   private $fileType = '';
 
   /**
-   * @var UploadFileParameters The download parameters.
+   * @var UploadFileParameters The upload parameters.
    */
   private $params;
 
@@ -46,7 +46,7 @@ class UploadTask extends FileTask {
 
   /**
    * Gets a value that uniquely identifies the file.
-   * @return string The current file type.
+   * @return string The current file type. Defaults to `"json"`.
    */
   public function getFileType(): string {
     return $this->fileType;

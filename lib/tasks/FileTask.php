@@ -29,10 +29,10 @@ abstract class FileTask extends \Task {
    * @throws \BuildException The requirements are not met.
    */
   public function init() {
-    if(!mb_strlen($this->getAccessToken())) throw new \BuildException('Your must provide the URI of the message source.');
-    if(!mb_strlen($this->getFileUri())) throw new \BuildException('Your must provide the URI of the message source.');
-    if(!mb_strlen($this->getProjectId())) throw new \BuildException('Your must provide the URI of the message source.');
-    if(!mb_strlen($this->getUserId())) throw new \BuildException('Your must provide the URI of the message source.');
+    if(!mb_strlen($this->getFileUri())) throw new \BuildException('Your must provide the value that uniquely identifies the file.');
+    if(!mb_strlen($this->getProjectId())) throw new \BuildException('Your must provide the project identifier.');
+    if(!mb_strlen($this->getUserId())) throw new \BuildException('Your must provide the user identifier.');
+    if(!mb_strlen($this->getUserSecret())) throw new \BuildException('Your must provide the user secret.');
   }
 
   /**
