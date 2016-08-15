@@ -1,5 +1,5 @@
 {
-  "description": "Phing tasks dedicated to the synchronization of translations with the Smartling service, based on the File API v2.",
+  "description": "Phing tasks dedicated to the synchronization of translations with the Smartling service.",
   "homepage": "https://github.com/aquafadas-com/phing-smartling",
   "name": "aquafadas/phing-smartling",
 

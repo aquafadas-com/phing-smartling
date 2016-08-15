@@ -45,7 +45,7 @@ class DownloadTask extends FileTask {
 
   /**
    * Gets a value indicating whether to return the original string or an empty string when no translation is available.
-   * @return bool `true` to return the original string when no translation is available, otherwise `false`. Defaults to `false`.
+   * @return bool `true` to return the original string when no translation is available, otherwise `false`.
    */
   public function getIncludeOriginalStrings(): bool {
     return $this->params->exportToArray()['includeOriginalStrings'] ?? false;
@@ -61,7 +61,7 @@ class DownloadTask extends FileTask {
 
   /**
    * Gets the desired format for the download.
-   * @return string The current desired format for the download. Defaults to `"published"`.
+   * @return string The current desired format for the download.
    */
   public function getRetrievalType(): string {
     return $this->params->exportToArray()['retrievalType'] ?? RetrievalType::PUBLISHED;
