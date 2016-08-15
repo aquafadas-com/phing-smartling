@@ -36,11 +36,19 @@ class UploadTask extends FileTask {
   }
 
   /**
-   * Gets a value indicating whether to return the original string or an empty string when no translation is available.
-   * @return bool `true` to return the original string when no translation is available, otherwise `false`. Defaults to `false`.
+   * Gets a value indicating whether content in the file is authorized (available for translation) in all locales.
+   * @return bool `true` to authorize the file content in all locales, otherwise `false`.
    */
   public function getAuthorize(): bool {
     return $this->params->exportToArray()['authorize'] ?? false;
+  }
+
+  /**
+   * Gets the URL of the callback called when the file is 100% published for a locale.
+   * @return string The callback URL.
+   */
+  public function getCallbackUrl(): string {
+    return $this->params->exportToArray()['callbackUrl'] ?? '';
   }
 
   /**
@@ -57,6 +65,14 @@ class UploadTask extends FileTask {
    */
   public function getFileType(): string {
     return $this->fileType;
+  }
+
+  /**
+   * Gets the list of specific locales in which the file content is authorized (available for translation).
+   * @return array The list of authorized locales.
+   */
+  public function getLocalesToAuthorize(): array {
+    return $this->params->exportToArray()['localeIdsToAuthorize[]'] ?? [];
   }
 
   /**
@@ -95,11 +111,19 @@ class UploadTask extends FileTask {
   }
 
   /**
-   * Sets a value indicating whether to return the original string or an empty string when no translation is available.
-   * @param bool $value `true` to return the original string when no translation is available, otherwise `false`.
+   * Sets a value indicating whether content in the file is authorized (available for translation) in all locales.
+   * @param bool $value `true` to authorize the file content in all locales, otherwise `false`.
    */
   public function setAuthorize(bool $value) {
     $this->params->setAuthorized($value);
+  }
+
+  /**
+   * Sets the URL of the callback called when the file is 100% published for a locale.
+   * @param string $value The new callback URL.
+   */
+  public function setCallbackUrl(string $value) {
+    $this->params->setCallbackUrl($value);
   }
 
   /**
@@ -116,5 +140,13 @@ class UploadTask extends FileTask {
    */
   public function setFileType(string $value) {
     $this->fileType = $value;
+  }
+
+  /**
+   * Sets the list of specific locales for which the file content is authorized (available for translation).
+   * @param array $values The new list of authorized locales.
+   */
+  public function setLocalesToAuthorize(array $values) {
+    $this->params->setLocalesToApprove($values);
   }
 }
