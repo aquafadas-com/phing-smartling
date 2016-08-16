@@ -85,16 +85,14 @@ class UploadTask extends FileTask {
 
     $file = $this->getFile();
     if(!$file) throw new \BuildException('You must provide the "file" attribute.');
-
-    $path = $file->getAbsolutePath();
-    if(!is_file($path)) throw new \BuildException('Unable to find the message source specified by the "file" attribute.');
+    if(!$file->isFile()) throw new \BuildException('Unable to find the message source specified by the "file" attribute.');
 
     $fileType = $this->getFileType();
     $fileUri = $this->getFileUri();
     if(!mb_strlen($fileType)) $fileType = static::getFileTypeFromUri($fileUri);
     if(!FileType::isDefined($fileType)) throw new \BuildException('Invalid "fileType" attribute.');
 
-    try { $this->createFileApi()->uploadFile($path, $fileUri, $fileType, $this->params); }
+    try { $this->createFileApi()->uploadFile($file->getAbsolutePath(), $fileUri, $fileType, $this->params); }
     catch(SmartlingApiException $e) { throw new \BuildException($e); }
   }
 
