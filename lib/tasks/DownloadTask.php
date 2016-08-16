@@ -41,7 +41,8 @@ class DownloadTask extends FileTask {
    * @return bool `true` to return the original string when no translation is available, otherwise `false`.
    */
   public function getIncludeOriginalStrings(): bool {
-    return $this->params->exportToArray()['includeOriginalStrings'] ?? false;
+    $params = $this->params->exportToArray();
+    return isset($params['includeOriginalStrings']) ? $params['includeOriginalStrings'] == 'true' ?? false;
   }
 
   /**
@@ -81,13 +82,16 @@ class DownloadTask extends FileTask {
     $locales = $this->getLocales();
     if(!count($locales)) throw new \BuildException('You must specify at least one locale in the "locales" attribute.');
 
+    $output = dirname($filePattern);
+    if(!is_dir($output) && !mkdir($output, 0755, true)) throw new \BuildException("Unable to create the output folder: $output");
+
     try {
       $fileApi = $this->createFileApi();
       $fileUri = $this->getFileUri();
 
       foreach($locales as $locale) {
         $path = str_replace('{{locale}}', $locale, $filePattern);
-        if(!@file_put_contents($path, $fileApi->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
+        if(!file_put_contents($path, $fileApi->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
           throw new \BuildException("Unable to save the downloaded file: $path");
       }
     }
@@ -110,7 +114,7 @@ class DownloadTask extends FileTask {
    * @param bool $value `true` to return the original string when no translation is available, otherwise `false`.
    */
   public function setIncludeOriginalStrings(bool $value) {
-    $this->params->setIncludeOriginalStrings($value);
+    $this->params->setIncludeOriginalStrings($value ? 'true' : 'false');
   }
 
   /**
