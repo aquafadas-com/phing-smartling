@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<project default="i18n:sync" name="phing-smartling">
+  <autoloader autoloaderpath="vendor/autoload.php"/>
+
+  <property name="i18n.fileUri" value="/Phing-Smartling/messages.json"/>
+  <property name="i18n.projectId" value="[the project identifier]"/>
+  <property name="i18n.userId" value="[the user identifier]"/>
+  <property name="i18n.userSecret" value="[the user secret]"/>
+
+  <taskdef classname="phing\smartling\tasks\DownloadTask" name="smartlingDownload"/>
+  <taskdef classname="phing\smartling\tasks\UploadTask" name="smartlingUpload"/>
+
+  <target name="i18n:download" description="Downloads the message translations from the Smartling server.">
+    <smartlingDownload
+      filePattern="path/to/i18n/{{locale}}.json"
+      fileUri="${i18n.fileUri}"
+      includeOriginalStrings="false"
+      locales="es-ES,fr-FR,ja-JP,zh-CN"
+      projectId="${i18n.projectId}"
+      retrievalType="published"
+      userId="${i18n.userId}"
+      userSecret="${i18n.userSecret}"
+    />
+  </target>
+
+  <target name="i18n:sync" description="Synchronizes the translations with the Smartling server.">
+    <phingcall target="i18n:upload"/>
+    <phingcall target="i18n:download"/>
+  </target>
+
+  <target name="i18n:upload" description="Uploads the message translations to the Smartling server.">
+    <smartlingUpload
+      authorize="false"
+      file="path/to/i18n/en-US.json"
+      fileType="json"
+      fileUri="${i18n.fileUri}"
+      projectId="${i18n.projectId}"
+      userId="${i18n.userId}"
+      userSecret="${i18n.userSecret}"
+    />
+  </target>
+</project>
