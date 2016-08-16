@@ -43,7 +43,7 @@ class FileTaskTest extends \PHPUnit_Framework_TestCase {
   /**
    * Tests the `main` method.
    */
-  public function testInit() {
+  public function testMain() {
     $this->expectException(\BuildException::class);
     (new SampleFileTask())->main();
   }
