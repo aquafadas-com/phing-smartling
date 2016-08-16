@@ -14,7 +14,7 @@ $ composer require --dev aquafadas/phing-smartling
 Once the build tasks have been installed, they may be enabled inside your `build.xml`.
 
 ## Tasks
-All file-based tasks requires at least four attributes:
+All file-based tasks require at least four attributes:
 
 - `fileUri: string` : A value that uniquely identifies the remote file.
 - `projectId: string` : The project identifier.
