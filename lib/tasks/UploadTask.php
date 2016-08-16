@@ -4,7 +4,7 @@
  */
 namespace phing\smartling\tasks;
 
-use phing\smartling\{FileType, Locale};
+use phing\smartling\FileType;
 use Smartling\Exceptions\SmartlingApiException;
 use Smartling\File\Params\UploadFileParameters;
 

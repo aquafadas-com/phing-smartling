@@ -11,8 +11,7 @@
   <taskdef classname="phing\smartling\tasks\UploadTask" name="smartlingUpload"/>
 
   <target name="i18n:download" description="Downloads the message translations from the Smartling server.">
-    <smartlingDownload
-      filePattern="path/to/i18n/{{locale}}.json"
+    <smartlingDownload filePattern="path/to/i18n/{{locale}}.json"
       fileUri="${i18n.fileUri}"
       includeOriginalStrings="false"
       locales="es-ES,fr-FR,ja-JP,zh-CN"
@@ -29,9 +28,8 @@
   </target>
 
   <target name="i18n:upload" description="Uploads the message translations to the Smartling server.">
-    <smartlingUpload
+    <smartlingUpload file="path/to/i18n/en-US.json"
       authorize="false"
-      file="path/to/i18n/en-US.json"
       fileType="json"
       fileUri="${i18n.fileUri}"
       projectId="${i18n.projectId}"
