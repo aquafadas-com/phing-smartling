@@ -29,13 +29,6 @@ class UploadTask extends FileTask {
   private $params;
 
   /**
-   * Initializes a new instance of the class.
-   */
-  public function __construct() {
-    $this->params = new UploadFileParameters();
-  }
-
-  /**
    * Gets a value indicating whether content in the file is authorized (available for translation) in all locales.
    * @return bool `true` to authorize the file content in all locales, otherwise `false`.
    */
@@ -77,37 +70,29 @@ class UploadTask extends FileTask {
 
   /**
    * Initializes the instance.
-   * @throws \BuildException The requirements are not met.
    */
   public function init() {
     parent::init();
-
-    $fileType = $this->getFileType();
-    if(mb_strlen($fileType) && !FileType::isDefined($fileType)) throw new \BuildException('File type not supported.');
-
-    $file = $this->getFile();
-    if(!$file || !is_file($file->getAbsolutePath())) throw new \BuildException('Unable to find the message source.');
+    $this->params = new UploadFileParameters();
   }
 
   /**
    * The task entry point.
+   * @throws \BuildException The requirements are not met.
    */
   public function main() {
+    parent::main();
+
+    $file = $this->getFile();
+    if(!$file || !is_file($file->getAbsolutePath())) throw new \BuildException('Unable to find the message source specified by the "file" attribute.');
+
     $fileType = $this->getFileType();
     $fileUri = $this->getFileUri();
+    if(!mb_strlen($fileType)) $fileType = static::getFileTypeFromUri($fileUri);
+    if(!FileType::isDefined($fileType)) throw new \BuildException('Invalid "fileType" attribute.');
 
-    try {
-      $this->createFileApi()->uploadFile(
-        $this->getFile()->getAbsolutePath(),
-        $fileUri,
-        mb_strlen($fileType) ? $fileType : static::getFileTypeFromUri($fileUri),
-        $this->params
-      );
-    }
-
-    catch(SmartlingApiException $e) {
-      throw new \BuildException($e);
-    }
+    try { $this->createFileApi()->uploadFile($file->getAbsolutePath(), $fileUri, $fileType, $this->params); }
+    catch(SmartlingApiException $e) { throw new \BuildException($e); }
   }
 
   /**
@@ -144,9 +129,11 @@ class UploadTask extends FileTask {
 
   /**
    * Sets the list of specific locales for which the file content is authorized (available for translation).
-   * @param array $values The new list of authorized locales.
+   * @param string $values The new list of authorized locales.
    */
-  public function setLocalesToAuthorize(array $values) {
-    $this->params->setLocalesToApprove($values);
+  public function setLocalesToAuthorize(string $values) {
+    $this->params->setLocalesToApprove(array_filter(array_map('trim', explode(',', $values)), function($locale) {
+      return mb_strlen($locale);
+    }));
   }
 }

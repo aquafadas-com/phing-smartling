@@ -29,13 +29,6 @@ class DownloadTask extends FileTask {
   private $params;
 
   /**
-   * Initializes a new instance of the class.
-   */
-  public function __construct() {
-    $this->params = new DownloadFileParameters();
-  }
-
-  /**
    * Gets the pattern indicating the target path of the downloaded files.
    * @return string The target path of the downloaded files (e.g. `"path/to/i18n/{{locale}}.json"`).
    */
@@ -69,25 +62,30 @@ class DownloadTask extends FileTask {
 
   /**
    * Initializes the instance.
-   * @throws \BuildException The requirements are not met.
    */
   public function init() {
     parent::init();
-    if(!mb_strlen($this->getFilePattern())) throw new \BuildException('You must provide the target path of the downloaded files.');
-    if(!count($this->getLocales())) throw new \BuildException('You must provide at least one locale to download.');
+    $this->params = new DownloadFileParameters();
   }
 
   /**
    * The task entry point.
-   * @throws \BuildException An error occurred during the processing.
+   * @throws \BuildException The requirements are not met, or an error occurred during the processing.
    */
   public function main() {
-    $fileApi = $this->createFileApi();
+    parent::main();
+
     $filePattern = $this->getFilePattern();
-    $fileUri = $this->getFileUri();
+    if(!mb_strlen($filePattern)) throw new \BuildException('You must provide the "filePattern" attribute.');
+
+    $locales = $this->getLocales();
+    if(!count($locales)) throw new \BuildException('You must specify at least one locale in the "locales" attribute.');
 
     try {
-      foreach($this->getLocales() as $locale) {
+      $fileApi = $this->createFileApi();
+      $fileUri = $this->getFileUri();
+
+      foreach($locales as $locale) {
         $path = str_replace('{{locale}}', $locale, $filePattern);
         if(!@file_put_contents($path, $fileApi->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
           throw new \BuildException("Unable to save the downloaded file: $path");
@@ -117,10 +115,12 @@ class DownloadTask extends FileTask {
 
   /**
    * Sets the list of locales to be downloaded.
-   * @param array $value The locales to download.
+   * @param string $values The locales to download.
    */
-  public function setLocales(array $value) {
-    $this->locales = $value;
+  public function setLocales(string $values) {
+    $this->locales = array_filter(array_map('trim', explode(',', $values)), function($locale) {
+      return mb_strlen($locale);
+    });
   }
 
   /**
