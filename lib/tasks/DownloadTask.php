@@ -42,7 +42,7 @@ class DownloadTask extends FileTask {
    */
   public function getIncludeOriginalStrings(): bool {
     $params = $this->params->exportToArray();
-    return isset($params['includeOriginalStrings']) ? $params['includeOriginalStrings'] == 'true' ?? false;
+    return isset($params['includeOriginalStrings']) ? $params['includeOriginalStrings'] == 'true' ? false;
   }
 
   /**
