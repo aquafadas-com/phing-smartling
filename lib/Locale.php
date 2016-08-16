@@ -20,7 +20,7 @@ class Locale {
     'el' => 'el-GR', 'en' => 'en-US', 'es' => 'es-ES', 'et' => 'et-EE',
     'fi' => 'fi-FI', 'fo' => 'fo-FO', 'fr' => 'fr-FR',
     'he' => 'he-IL', 'hi' => 'hi-IN', 'hr' => 'hr-HR', 'hu' => 'hu-HU', 'hy' => 'hy-AM',
-    'id' => 'id-ID', 'is' =< 'is-IS', 'it' => 'it-IT',
+    'id' => 'id-ID', 'is' => 'is-IS', 'it' => 'it-IT',
     'ja' => 'ja-JP',
     'ka' => 'ka-GE', 'kk' => 'kk-KZ', 'kl' => 'kl-GL', 'km' => 'km-KH', 'ko' => 'ko-KR', 'ky' => 'ky-KG',
     'lb' => 'lb-LU', 'lt' => 'lt-LT', 'lv' => 'lv-LV',
