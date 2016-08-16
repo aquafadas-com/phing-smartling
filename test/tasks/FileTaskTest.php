@@ -13,11 +13,6 @@ use phing\smartling\tasks\FileTask;
 class SampleFileTask extends FileTask {
 
   /**
-   * The task entry point.
-   */
-  public function main() {}
-
-  /**
    * Returns the file type corresponding to the specified file URI.
    * @param string $fileUri The file URI.
    * @return string The file type corresponding to the specified file URI, or an empty string if the type is unknown.
@@ -46,10 +41,10 @@ class FileTaskTest extends \PHPUnit_Framework_TestCase {
   }
 
   /**
-   * Tests the `init` method.
+   * Tests the `main` method.
    */
   public function testInit() {
     $this->expectException(\BuildException::class);
-    (new SampleFileTask())->init();
+    (new SampleFileTask())->main();
   }
 }
