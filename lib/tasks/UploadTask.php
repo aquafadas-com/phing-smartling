@@ -53,7 +53,7 @@ class UploadTask extends FileTask {
   }
 
   /**
-   * Gets a value that uniquely identifies the file.
+   * Gets the file type.
    * @return string The current file type.
    */
   public function getFileType(): string {
@@ -113,7 +113,7 @@ class UploadTask extends FileTask {
   }
 
   /**
-   * Sets a value that uniquely identifies the file.
+   * Sets the file type.
    * @param string $value The new file type.
    */
   public function setFileType(string $value) {
