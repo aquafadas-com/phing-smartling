@@ -4,7 +4,7 @@
  */
 namespace phing\smartling\tasks;
 
-use phing\smartling\FileType;
+use phing\smartling\{FileType, Locale};
 use Smartling\Exceptions\SmartlingApiException;
 use Smartling\File\Params\UploadFileParameters;
 
@@ -58,14 +58,6 @@ class UploadTask extends FileTask {
    */
   public function getFileType(): string {
     return $this->fileType;
-  }
-
-  /**
-   * Gets the list of specific locales in which the file content is authorized (available for translation).
-   * @return array The list of authorized locales.
-   */
-  public function getLocalesToAuthorize(): array {
-    return $this->params->exportToArray()['localeIdsToAuthorize[]'] ?? [];
   }
 
   /**
@@ -126,15 +118,5 @@ class UploadTask extends FileTask {
    */
   public function setFileType(string $value) {
     $this->fileType = $value;
-  }
-
-  /**
-   * Sets the list of specific locales for which the file content is authorized (available for translation).
-   * @param string $values The new list of authorized locales.
-   */
-  public function setLocalesToAuthorize(string $values) {
-    $this->params->setLocalesToApprove(array_filter(array_map('trim', explode(',', $values)), function($locale) {
-      return mb_strlen($locale);
-    }));
   }
 }
