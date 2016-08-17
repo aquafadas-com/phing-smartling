@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <project default="dist" name="phing-smartling">
-  <property name="version" value="0.1.0"/>
+  <property name="version" value="0.1.1"/>
 
   <target name="clean" description="Deletes all generated files and reset any saved state.">
     <delete>

@@ -33,7 +33,8 @@ class UploadTask extends FileTask {
    * @return bool `true` to authorize the file content in all locales, otherwise `false`.
    */
   public function getAuthorize(): bool {
-    return $this->params->exportToArray()['authorize'] ?? false;
+    $params = $this->params->exportToArray();
+    return isset($params['authorize']) && $params['authorize'] == 'true';
   }
 
   /**
@@ -93,7 +94,7 @@ class UploadTask extends FileTask {
    * @param bool $value `true` to authorize the file content in all locales, otherwise `false`.
    */
   public function setAuthorize(bool $value) {
-    $this->params->setAuthorized($value);
+    $this->params->setAuthorized($value ? 'true' : 'false');
   }
 
   /**
