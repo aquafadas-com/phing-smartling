@@ -1,10 +1,9 @@
-language: php
 php: '7.0'
+language: php
+
+env: YII_ENV="test"
 sudo: false
 
-install:
-- composer self-update
-- composer install --no-interaction
-
-script: ./vendor/bin/phpunit
-after_script: ./vendor/bin/codacycoverage clover var/coverage.xml
+install: composer install --no-interaction
+script: vendor/bin/phpunit
+after_script: vendor/bin/codacycoverage clover var/coverage.xml
