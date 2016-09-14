@@ -29,7 +29,7 @@
   "require": {
     "php": ">=7.0.0",
     "phing/phing": "^2.14.0",
-    "smartling/api-sdk-php": "^1.9.14"
+    "smartling/api-sdk-php": "^1.9.17"
   },
   "require-dev": {
     "codacy/coverage": "^1.0.5",
