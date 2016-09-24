@@ -16,7 +16,7 @@ Once the build tasks have been installed, they may be enabled inside your `build
 ## Tasks
 All file-based tasks require at least four attributes:
 
-- `fileUri: string` : A value that uniquely identifies the remote file.
+- `fileURI: string` : A value that uniquely identifies the remote file.
 - `projectId: string` : The project identifier.
 - `userId: string` : The user identifier.
 - `userSecret: string` : The user secret.
@@ -30,7 +30,7 @@ The `{{locale}}` placeholder will be replaced by the locale of each file.
 
 <target name="i18n:download">
   <smartlingDownload filePattern="path/to/i18n/{{locale}}.json"
-    fileUri="/Phing-Smartling/messages.json"
+    fileURI="/Phing-Smartling/messages.json"
     locales="es-ES,fr-FR,ja-JP,zh-CN"
     projectId="FooBar"
     userId="MyUserIdentifier"
@@ -54,7 +54,7 @@ This task takes a file path as input, specifying the message source to be upload
 
 <target name="i18n:upload">
   <smartlingUpload file="path/to/i18n/en-US.json"
-    fileUri="/Phing-Smartling/messages.json"
+    fileURI="/Phing-Smartling/messages.json"
     projectId="FooBar"
     userId="MyUserIdentifier"
     userSecret="MyTokenSecret"

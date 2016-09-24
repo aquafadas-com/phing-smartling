@@ -2,7 +2,7 @@
 <project default="i18n:sync" name="phing-smartling">
   <autoloader autoloaderpath="vendor/autoload.php"/>
 
-  <property name="i18n.fileUri" value="/Phing-Smartling/messages.json"/>
+  <property name="i18n.fileURI" value="/Phing-Smartling/messages.json"/>
   <property name="i18n.projectId" value="[the project identifier]"/>
   <property name="i18n.userId" value="[the user identifier]"/>
   <property name="i18n.userSecret" value="[the user secret]"/>
@@ -12,7 +12,7 @@
 
   <target name="i18n:download" description="Downloads the message translations from the Smartling server.">
     <smartlingDownload filePattern="path/to/i18n/{{locale}}.json"
-      fileUri="${i18n.fileUri}"
+      fileURI="${i18n.fileURI}"
       includeOriginalStrings="false"
       locales="es-ES,fr-FR,ja-JP,zh-CN"
       projectId="${i18n.projectId}"
@@ -31,7 +31,7 @@
     <smartlingUpload file="path/to/i18n/en-US.json"
       authorize="false"
       fileType="json"
-      fileUri="${i18n.fileUri}"
+      fileURI="${i18n.fileURI}"
       projectId="${i18n.projectId}"
       userId="${i18n.userId}"
       userSecret="${i18n.userSecret}"

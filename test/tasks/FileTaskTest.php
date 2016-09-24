@@ -14,11 +14,11 @@ class SampleFileTask extends FileTask {
 
   /**
    * Returns the file type corresponding to the specified file URI.
-   * @param string $fileUri The file URI.
+   * @param string $fileURI The file URI.
    * @return string The file type corresponding to the specified file URI, or an empty string if the type is unknown.
    */
-  public static function getFileTypeFromUri(string $fileUri): string {
-    return parent::getFileTypeFromUri($fileUri);
+  public static function getFileTypeFromURI(string $fileURI): string {
+    return parent::getFileTypeFromURI($fileURI);
   }
 }
 
@@ -28,16 +28,16 @@ class SampleFileTask extends FileTask {
 class FileTaskTest extends \PHPUnit_Framework_TestCase {
 
   /**
-   * Tests the `getFileTypeFromUri` method.
+   * Tests the `getFileTypeFromURI` method.
    */
-  public function testGetFileTypeFromUri() {
-    $this->assertEquals('', SampleFileTask::getFileTypeFromUri('/fooBar'));
-    $this->assertEquals('', SampleFileTask::getFileTypeFromUri('/foo.bar'));
+  public function testGetFileTypeFromURI() {
+    $this->assertEquals('', SampleFileTask::getFileTypeFromURI('/fooBar'));
+    $this->assertEquals('', SampleFileTask::getFileTypeFromURI('/foo.bar'));
 
-    $this->assertEquals(FileType::CSV, SampleFileTask::getFileTypeFromUri('/messages.csv'));
-    $this->assertEquals(FileType::JSON, SampleFileTask::getFileTypeFromUri('/project/messages.json'));
-    $this->assertEquals(FileType::JAVA_PROPERTIES, SampleFileTask::getFileTypeFromUri('messages.properties'));
-    $this->assertEquals(FileType::XLIFF, SampleFileTask::getFileTypeFromUri('project/messages.xlf'));
+    $this->assertEquals(FileType::CSV, SampleFileTask::getFileTypeFromURI('/messages.csv'));
+    $this->assertEquals(FileType::JSON, SampleFileTask::getFileTypeFromURI('/project/messages.json'));
+    $this->assertEquals(FileType::JAVA_PROPERTIES, SampleFileTask::getFileTypeFromURI('messages.properties'));
+    $this->assertEquals(FileType::XLIFF, SampleFileTask::getFileTypeFromURI('project/messages.xlf'));
   }
 
   /**

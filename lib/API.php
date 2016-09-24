@@ -87,7 +87,7 @@ trait API {
    * Creates a File API provider.
    * @return FileApi The newly created instance.
    */
-  protected function createFileApi(): FileApi {
+  protected function createFileAPI(): FileApi {
     return FileApi::create($this->createAuthTokenProvider(), $this->getProjectId());
   }
 }

@@ -14,14 +14,14 @@ abstract class FileTask extends \Task {
   /**
    * @var string The file URI.
    */
-  private $fileUri = '';
+  private $fileURI = '';
 
   /**
    * Gets a value that uniquely identifies the file.
    * @return string The current file URI.
    */
-  public function getFileUri(): string {
-    return $this->fileUri;
+  public function getFileURI(): string {
+    return $this->fileURI;
   }
 
   /**
@@ -29,7 +29,7 @@ abstract class FileTask extends \Task {
    * @throws \BuildException The requirements are not met.
    */
   public function main() {
-    if(!mb_strlen($this->getFileUri())) throw new \BuildException('Your must provide the "fileUri" attribute.');
+    if(!mb_strlen($this->getFileURI())) throw new \BuildException('Your must provide the "fileURI" attribute.');
     if(!mb_strlen($this->getProjectId())) throw new \BuildException('Your must provide the "projectId" attribute.');
     if(!mb_strlen($this->getUserId())) throw new \BuildException('Your must provide the "userId" attribute.');
     if(!mb_strlen($this->getUserSecret())) throw new \BuildException('Your must provide "userSecret" attribute.');
@@ -39,19 +39,17 @@ abstract class FileTask extends \Task {
    * Sets a value that uniquely identifies the file.
    * @param string $value The new file URI.
    */
-  public function setFileUri(string $value) {
-    $this->fileUri = $value;
+  public function setFileURI(string $value) {
+    $this->fileURI = $value;
   }
 
   /**
    * Returns the file type corresponding to the specified file URI.
-   * @param string $fileUri The file URI.
+   * @param string $fileURI The file URI.
    * @return string The file type corresponding to the specified file URI, or an empty string if the type is unknown.
    */
-  protected static function getFileTypeFromUri(string $fileUri): string {
-    $extension = mb_strtolower(pathinfo($fileUri, PATHINFO_EXTENSION));
-    if(!mb_strlen($extension)) return '';
-
+  protected static function getFileTypeFromURI(string $fileURI): string {
+    $extension = mb_strtolower(pathinfo($fileURI, PATHINFO_EXTENSION));
     switch($extension) {
       case FileType::CSV:
       case FileType::HTML:

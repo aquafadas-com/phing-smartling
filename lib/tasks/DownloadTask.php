@@ -83,8 +83,8 @@ class DownloadTask extends FileTask {
     if(!count($locales)) throw new \BuildException('You must specify at least one locale in the "locales" attribute.');
 
     try {
-      $fileApi = $this->createFileApi();
-      $fileUri = $this->getFileUri();
+      $fileAPI = $this->createFileAPI();
+      $fileURI = $this->getFileURI();
 
       foreach($locales as $locale) {
         $path = str_replace('{{locale}}', $locale, $filePattern);
@@ -92,7 +92,7 @@ class DownloadTask extends FileTask {
         $output = dirname($path);
         if(!is_dir($output) && !mkdir($output, 0755, true)) throw new \BuildException("Unable to create the output folder: $output");
 
-        if(!file_put_contents($path, $fileApi->downloadFile($fileUri, Locale::getSpecificLocale($locale), $this->params)))
+        if(!file_put_contents($path, $fileAPI->downloadFile($fileURI, Locale::getSpecificLocale($locale), $this->params)))
           throw new \BuildException("Unable to save the downloaded file: $path");
       }
     }
