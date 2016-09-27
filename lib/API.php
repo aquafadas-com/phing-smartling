@@ -4,8 +4,8 @@
  */
 namespace phing\smartling;
 
-use Smartling\AuthApi\AuthTokenProvider;
-use Smartling\File\FileApi;
+use Smartling\AuthApi\{AuthTokenProvider};
+use Smartling\File\{FileApi};
 
 /**
  * Provides common properties and methods for the [Phing](https://www.phing.info) tasks related to the [Smartling](https://www.smartling.com) service.

@@ -4,8 +4,8 @@
  */
 namespace phing\smartling\test\tasks;
 
-use phing\smartling\FileType;
-use phing\smartling\tasks\FileTask;
+use phing\smartling\{FileType};
+use phing\smartling\tasks\{FileTask};
 
 /**
  * A sample file task.

@@ -3,7 +3,7 @@
  * Implementation of the `phing\smartling\RetrievalType` enumeration.
  */
 namespace phing\smartling;
-use Smartling\File\Params\DownloadFileParameters;
+use Smartling\File\Params\{DownloadFileParameters};
 
 /**
  * Defines the retrieval type of a file to be downloaded.

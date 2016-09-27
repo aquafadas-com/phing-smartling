@@ -5,8 +5,8 @@
 namespace phing\smartling\tasks;
 
 use phing\smartling\{Locale, RetrievalType};
-use Smartling\Exceptions\SmartlingApiException;
-use Smartling\File\Params\DownloadFileParameters;
+use Smartling\Exceptions\{SmartlingApiException};
+use Smartling\File\Params\{DownloadFileParameters};
 
 /**
  * Downloads the message translations from the [Smartling](https://www.smartling.com) server.

@@ -3,7 +3,7 @@
  * Implementation of the `phing\smartling\test\EnumTest` class.
  */
 namespace phing\smartling\test;
-use phing\smartling\Enum;
+use phing\smartling\{Enum};
 
 /**
  * A sample enumeration.
