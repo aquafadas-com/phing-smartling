@@ -50,10 +50,8 @@ class EnumTest extends \PHPUnit_Framework_TestCase {
    * Tests the `isDefined` method.
    */
   public function testIsDefined() {
-    $this->assertFalse(SampleEnum::isDefined(true));
-    $this->assertFalse(SampleEnum::isDefined(1.0));
     $this->assertFalse(SampleEnum::isDefined('TWO'));
-    $this->assertFalse(SampleEnum::isDefined(3));
+    $this->assertFalse(SampleEnum::isDefined(3.1));
 
     $this->assertTrue(SampleEnum::isDefined(false));
     $this->assertTrue(SampleEnum::isDefined(1));
@@ -72,10 +70,8 @@ class EnumTest extends \PHPUnit_Framework_TestCase {
    * Tests the `getName` method.
    */
   public function testGetName() {
-    $this->assertEquals(SampleEnum::getName(true), '');
-    $this->assertEquals(SampleEnum::getName(1.0), '');
     $this->assertEquals(SampleEnum::getName('TWO'), '');
-    $this->assertEquals(SampleEnum::getName(3), '');
+    $this->assertEquals(SampleEnum::getName(3.1), '');
 
     $this->assertEquals(SampleEnum::getName(false), 'ZERO');
     $this->assertEquals(SampleEnum::getName(1), 'ONE');
