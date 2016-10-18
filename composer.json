@@ -28,14 +28,14 @@
   ],
   "require": {
     "php": ">=7.0.0",
-    "phing/phing": "^2.14.0",
+    "phing/phing": "^2.15.2",
     "smartling/api-sdk-php": "^1.9.17"
   },
   "require-dev": {
     "codacy/coverage": "^1.0.5",
     "phpdocumentor/phpdocumentor": "^2.9.0",
     "phpmd/phpmd": "^2.4.3",
-    "phpunit/phpunit": "^5.5.4"
+    "phpunit/phpunit": "^5.6.1"
   },
   "support": {
     "issues": "https://github.com/aquafadas-com/phing-smartling/issues"

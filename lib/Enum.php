@@ -20,7 +20,7 @@ trait Enum {
    * @return bool `true` if a constant in this enumeration has the specified value, otherwise `false`.
    */
   public static function isDefined($value): bool {
-    return in_array($value, static::getValues(), true);
+    return in_array($value, static::getValues());
   }
 
   /**
@@ -39,7 +39,7 @@ trait Enum {
    * @return string A string containing the name of the enumerated constant that has the specified value, or an empty string if no such constant is found.
    */
   public static function getName($value): string {
-    $index = array_search($value, static::getValues(), true);
+    $index = array_search($value, static::getValues());
     return is_int($index) ? static::getNames()[$index] : '';
   }
 

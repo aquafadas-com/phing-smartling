@@ -80,13 +80,13 @@ class DownloadTask extends FileTask {
     if(!mb_strlen($filePattern)) throw new \BuildException('You must provide the "filePattern" attribute.');
 
     $locales = $this->getLocales();
-    if(!count($locales)) throw new \BuildException('You must specify at least one locale in the "locales" attribute.');
+    if(!$locales) throw new \BuildException('You must specify at least one locale in the "locales" attribute.');
 
     try {
       $fileAPI = $this->createFileAPI();
       $fileURI = $this->getFileURI();
 
-      foreach($locales as $locale) {
+      foreach ($locales as $locale) {
         $path = str_replace('{{locale}}', $locale, $filePattern);
 
         $output = dirname($path);
