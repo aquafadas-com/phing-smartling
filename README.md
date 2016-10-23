@@ -77,4 +77,4 @@ A full sample is located in the `example` folder:
 [Sample Phing Tasks](https://github.com/aquafadas-com/phing-smartling/blob/master/example/build.xml)
 
 ## License
-[Phing-Smartling](https://packagist.org/packages/aquafadas/phing-smartling) is distributed under the Apache License, version 2.0.
+[Phing-Smartling](https://github.com/aquafadas-com/phing-smartling) is distributed under the Apache License, version 2.0.

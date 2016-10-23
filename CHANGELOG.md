@@ -1,5 +1,5 @@
 # Changelog
-This file contains highlights of what changes on each version of the [Phing-Smartling](https://packagist.org/packages/aquafadas/phing-smartling) package.
+This file contains highlights of what changes on each version of the [Phing-Smartling](https://github.com/aquafadas-com/phing-smartling) package.
 
 ## Version 1.0.0
 - First stable release.
