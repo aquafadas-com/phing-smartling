@@ -5,7 +5,10 @@
 
 ## Getting Started
 If you haven't used [Phing](https://www.phing.info) before, be sure to check out the [related documentation](https://www.phing.info/docs/guide/stable), as it explains how to create a `build.xml` as well as install and use user tasks.
-Once you're familiar with that process, you may install the provided Phing classes with this command:
+Once you're familiar with that process, you may install the provided classes.
+
+## Installing via [Composer](https://getcomposer.org)
+From a command prompt, run:
 
 ```shell
 $ composer require --dev aquafadas/phing-smartling
@@ -13,7 +16,7 @@ $ composer require --dev aquafadas/phing-smartling
 
 Once the build tasks have been installed, they may be enabled inside your `build.xml`.
 
-## Tasks
+## Usage
 All file-based tasks require at least four attributes:
 
 - `fileURI: string` : A value that uniquely identifies the remote file.
