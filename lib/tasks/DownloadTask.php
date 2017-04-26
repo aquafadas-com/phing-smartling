@@ -43,7 +43,7 @@ class DownloadTask extends FileTask
      * Gets a value indicating whether to return the original string or an empty string when no translation is available.
      * @return bool `true` to return the original string when no translation is available, otherwise `false`.
      */
-    public function hasIncludeOriginalStrings()
+    public function getIncludeOriginalStrings()
     {
         $params = $this->params->exportToArray();
 
