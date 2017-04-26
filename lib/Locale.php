@@ -7,8 +7,8 @@ namespace phing\smartling;
 /**
  * Provides static methods for locales.
  */
-class Locale {
-
+class Locale
+{
   /**
    * @var array Provides the mapping between neutral locales and default specific locales.
    */
@@ -36,25 +36,28 @@ class Locale {
     'zh' => 'zh-CN'
   ];
 
-  /**
-   * Private constructor: prohibit the class instantiation.
-   */
-  private function __construct() {}
+    /**
+     * Private constructor: prohibit the class instantiation.
+     */
+    private function __construct() {}
 
-  /**
-   * Returns an array providing the mapping between neutral locales and default specific locales.
-   * @return array The mapping between neutral locales and default specific locales.
-   */
-  public static function getLocales(): array {
-    return static::$locales;
-  }
+    /**
+     * Returns an array providing the mapping between neutral locales and default specific locales.
+     * @return array The mapping between neutral locales and default specific locales.
+     */
+    public static function getLocales()
+    {
+        return static::$locales;
+    }
 
-  /**
-   * Returns the default specific locale corresponding to the specified neutral locale.
-   * @param string $neutralLocale A neutral locale.
-   * @return string The default specific locale corresponding to the specified neutral locale, or the neutral locale if no specific locale matches.
-   */
-  public static function getSpecificLocale(string $neutralLocale): string {
-    return static::getLocales()[$neutralLocale] ?? $neutralLocale;
-  }
+    /**
+     * Returns the default specific locale corresponding to the specified neutral locale.
+     * @param string $neutralLocale A neutral locale.
+     * @return string The default specific locale corresponding to the specified neutral locale, or the neutral locale if no specific locale matches.
+     */
+    public static function getSpecificLocale($neutralLocale)
+    {
+        $locales = static::getLocales();
+        return isset($locales[ $neutralLocale ]) ? $locales[ $neutralLocale ] : $neutralLocale;
+    }
 }

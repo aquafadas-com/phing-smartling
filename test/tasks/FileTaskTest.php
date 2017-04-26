@@ -4,8 +4,8 @@
  */
 namespace phing\smartling\test\tasks;
 
-use phing\smartling\{FileType};
-use phing\smartling\tasks\{FileTask};
+use phing\smartling\FileType;
+use phing\smartling\tasks\FileTask;
 
 /**
  * A sample file task.
@@ -17,7 +17,7 @@ class SampleFileTask extends FileTask {
    * @param string $fileURI The file URI.
    * @return string The file type corresponding to the specified file URI, or an empty string if the type is unknown.
    */
-  public static function getFileTypeFromURI(string $fileURI): string {
+  public static function getFileTypeFromURI($fileURI) {
     return parent::getFileTypeFromURI($fileURI);
   }
 }

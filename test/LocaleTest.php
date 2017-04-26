@@ -3,7 +3,7 @@
  * Implementation of the `phing\smartling\test\LocaleTest` class.
  */
 namespace phing\smartling\test;
-use phing\smartling\{Locale};
+use phing\smartling\Locale;
 
 /**
  * Tests the features of the `phing\smartling\Locale` class.
