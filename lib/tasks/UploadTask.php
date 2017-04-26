@@ -33,7 +33,7 @@ class UploadTask extends FileTask
      * Gets a value indicating whether content in the file is authorized (available for translation) in all locales.
      * @return bool `true` to authorize the file content in all locales, otherwise `false`.
      */
-    public function getAuthorize()
+    public function isAuthorized()
     {
         $params = $this->params->exportToArray();
         return isset($params[ 'authorize' ]) && $params[ 'authorize' ] == 'true';

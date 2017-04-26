@@ -1,6 +1,9 @@
 # Changelog
 This file contains highlights of what changes on each version of the [Phing-Smartling](https://github.com/aquafadas-com/phing-smartling) package.
 
+## Version 1.1.0
+- Made the code compatible with PHP 5.5
+
 ## Version 1.0.0
 - First stable release.
 - Updated the package dependencies.
