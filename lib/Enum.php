@@ -7,8 +7,8 @@ namespace phing\smartling;
 /**
  * Provides static methods for enumerations.
  */
-trait Enum {
-
+trait Enum
+{
   /**
    * Private constructor: prohibit the class instantiation.
    */
@@ -19,7 +19,7 @@ trait Enum {
    * @param mixed $value The value of a constant in this enumeration.
    * @return bool `true` if a constant in this enumeration has the specified value, otherwise `false`.
    */
-  public static function isDefined($value): bool {
+  public static function isDefined($value) {
     return in_array($value, static::getValues());
   }
 
@@ -27,9 +27,11 @@ trait Enum {
    * Retrieves an array of the names and values of the constants in this enumeration.
    * @return array An array that contains the names and values of the constants in this enumeration.
    */
-  public static function getConstants(): array {
+  public static function getConstants() {
     static $constants;
-    if(!isset($constants)) $constants = (new \ReflectionClass(get_called_class()))->getConstants();
+    if(!isset($constants)){
+        $constants = (new \ReflectionClass(get_called_class()))->getConstants();
+    }
     return $constants;
   }
 
@@ -38,7 +40,7 @@ trait Enum {
    * @param mixed $value The value of a constant in this enumeration.
    * @return string A string containing the name of the enumerated constant that has the specified value, or an empty string if no such constant is found.
    */
-  public static function getName($value): string {
+  public static function getName($value) {
     $index = array_search($value, static::getValues());
     return is_int($index) ? static::getNames()[$index] : '';
   }
@@ -47,7 +49,7 @@ trait Enum {
    * Retrieves an array of the names of the constants in this enumeration.
    * @return string[] An array that contains the names of the constants in this enumeration.
    */
-  public static function getNames(): array {
+  public static function getNames() {
     return array_keys(static::getConstants());
   }
 
@@ -55,7 +57,7 @@ trait Enum {
    * Retrieves an array of the values of the constants in this enumeration.
    * @return array An array that contains the values of the constants in this enumeration.
    */
-  public static function getValues(): array {
+  public static function getValues() {
     return array_values(static::getConstants());
   }
 }

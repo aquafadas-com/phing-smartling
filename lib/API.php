@@ -4,14 +4,14 @@
  */
 namespace phing\smartling;
 
-use Smartling\AuthApi\{AuthTokenProvider};
-use Smartling\File\{FileApi};
+use Smartling\AuthApi\AuthTokenProvider;
+use Smartling\File\FileApi;
 
 /**
  * Provides common properties and methods for the [Phing](https://www.phing.info) tasks related to the [Smartling](https://www.smartling.com) service.
  */
-trait API {
-
+trait API
+{
   /**
    * @var string The project identifier.
    */
@@ -31,7 +31,7 @@ trait API {
    * Gets the project identifier.
    * @return string $value The current project identifier.
    */
-  public function getProjectId(): string {
+  public function getProjectId() {
     return $this->projectId;
   }
 
@@ -39,7 +39,7 @@ trait API {
    * Gets the user identifier.
    * @return string The current user identifier.
    */
-  public function getUserId(): string {
+  public function getUserId() {
     return $this->userId;
   }
 
@@ -47,7 +47,7 @@ trait API {
    * Gets the user secret.
    * @return string The current user secret.
    */
-  public function getUserSecret(): string {
+  public function getUserSecret() {
     return $this->userSecret;
   }
 
@@ -55,7 +55,7 @@ trait API {
    * Sets the project identifier.
    * @param string $value The new project identifier.
    */
-  public function setProjectId(string $value) {
+  public function setProjectId($value) {
     $this->projectId = $value;
   }
 
@@ -63,7 +63,7 @@ trait API {
    * Sets the user identifier.
    * @param string $value The new user identifier.
    */
-  public function setUserId(string $value) {
+  public function setUserId($value) {
     $this->userId = $value;
   }
 
@@ -71,7 +71,7 @@ trait API {
    * Sets the user secret.
    * @param string $value The new user secret.
    */
-  public function setUserSecret(string $value) {
+  public function setUserSecret($value) {
     $this->userSecret = $value;
   }
 
@@ -79,7 +79,7 @@ trait API {
    * Creates an authentication token provider.
    * @return AuthTokenProvider The newly created instance.
    */
-  protected function createAuthTokenProvider(): AuthTokenProvider {
+  protected function createAuthTokenProvider() {
     return AuthTokenProvider::create($this->getUserId(), $this->getUserSecret());
   }
 
@@ -87,7 +87,7 @@ trait API {
    * Creates a File API provider.
    * @return FileApi The newly created instance.
    */
-  protected function createFileAPI(): FileApi {
+  protected function createFileAPI() {
     return FileApi::create($this->createAuthTokenProvider(), $this->getProjectId());
   }
 }

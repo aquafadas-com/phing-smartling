@@ -3,14 +3,14 @@
  * Implementation of the `phing\smartling\RetrievalType` enumeration.
  */
 namespace phing\smartling;
-use Smartling\File\Params\{DownloadFileParameters};
+use Smartling\File\Params\DownloadFileParameters;
 
 /**
  * Defines the retrieval type of a file to be downloaded.
  */
-final class RetrievalType {
+final class RetrievalType
+{
   use Enum;
-
   /**
    * @var string Returns a modified version of the original file with strings wrapped in a specific set of Unicode symbols that can later be recognized and matched by the Chrome Context Capture Extension.
    */
